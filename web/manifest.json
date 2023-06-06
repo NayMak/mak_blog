@@ -1,11 +1,11 @@
 {
-    "name": "flutter_template_web",
-    "short_name": "flutter_template_web",
+    "name": "mak_blog",
+    "short_name": "mak_blog",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Flutter Web Template",
+    "description": "Mak Blog",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

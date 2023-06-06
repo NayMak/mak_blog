@@ -1,8 +1,17 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'firebase_options.dart';
+
 void main() {
   runApp(const MyApp());
+}
+
+Future<void> firebaseInitialization() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -10,6 +19,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    firebaseInitialization();
+
     return MaterialApp.router(
       routerConfig: GoRouter(
         routes: <RouteBase>[
