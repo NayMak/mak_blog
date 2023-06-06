@@ -1,0 +1,22 @@
+name: PR Title Format
+on:
+  pull_request_target:
+    types: [opened, edited, synchronize, labeled, unlabeled]
+
+jobs:
+  pr_title_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Verify PR title format
+        run: |
+          title=$(jq -r '.pull_request.title' "$GITHUB_EVENT_PATH")
+          if echo "$title" | grep -Eq '^(feat|feature|fix|ci|perf|test|docs|refactor|build|hotfix|release|chore)\(([a-zA-Z0-9-]+)\):\s(.+)$'; then
+            echo "Success: PR title format is valid"
+          else
+            echo "Error: PR title does not match the required format <type>(<scope>): <short summary>"
+            echo "Check CONTRIBUTING.md for more information"
+            exit 1
+          fi
