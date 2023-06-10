@@ -1,31 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../models/article.dart';
 
 class ArticleItem extends StatelessWidget {
-  const ArticleItem({
-    required this.name,
-    required this.title,
-    required this.summary,
-    required this.content,
+  const ArticleItem(
+    this.article, {
     super.key,
   });
 
-  final String name;
-  final String title;
-  final String summary;
-  final String content;
+  final Article article;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.goNamed('article', pathParameters: {'articleId': name});
+        context.goNamed(
+          'article',
+          pathParameters: {'id': article.id!},
+        );
       },
       child: Column(
         children: [
-          Text(title),
-          Text(summary),
-          Text(content),
+          Text(article.title),
+          Text(article.summary),
+          Text(article.content),
         ],
       ),
     );

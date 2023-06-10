@@ -2,11 +2,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'article/article_view.dart';
+import 'article/article_page.dart';
 import 'firebase_options.dart';
-import 'home/home_view.dart';
+import 'home/home_page.dart';
 
-void main() {
+void main() async {
+  await firebaseInitialization();
   runApp(const MyApp());
 }
 
@@ -21,8 +22,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    firebaseInitialization();
-
     return MaterialApp.router(
       routerConfig: GoRouter(
         initialLocation: '/home',
@@ -30,14 +29,14 @@ class MyApp extends StatelessWidget {
           GoRoute(
             path: '/home',
             builder: (BuildContext context, GoRouterState state) {
-              return const HomeView();
+              return const HomePage();
             },
             routes: <RouteBase>[
               GoRoute(
                 name: 'article',
-                path: 'article/:articleId',
+                path: 'article/:id',
                 builder: (BuildContext context, GoRouterState state) {
-                  return ArticleView(id: state.pathParameters['articleId']!);
+                  return ArticlePage(state.pathParameters['id']!);
                 },
               ),
             ],
