@@ -7,12 +7,14 @@ class Article {
   final String title;
   final String summary;
   final String content;
+  final int publicationDate;
   final String? id;
 
   Article({
     required this.title,
     required this.summary,
     required this.content,
+    required this.publicationDate,
     this.id,
   });
 

@@ -17,6 +17,7 @@ class FirebaseService {
             title: value.data().title,
             summary: value.data().summary,
             content: value.data().content,
+            publicationDate: value.data().publicationDate,
             id: value.reference.id,
           ),
         )
